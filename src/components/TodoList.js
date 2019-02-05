@@ -9,23 +9,22 @@ class TodoList extends React.Component {
 	
 	passClickedItem(clickedItem){
 		this.props.onClick(clickedItem);
-		console.log('passClickedItem - clickedItem: ', clickedItem)
 	}
-	
-	render() {
-		const singleTaskNames = this.props.tasks.map(singleTask => {
-			console.log ('render: singleTask in map function: ', singleTask)
-			return (
+
+	prepareList(){
+		return this.props.tasks.map((singleTask) => 
 			<li className={style.todoText} key={singleTask.id} onClick={() => this.passClickedItem(singleTask.id)}>
 				{singleTask.text}
 			</li>
-		)});
-		console.log('render: singleTaskNames: ', singleTaskNames)
+		);
+	}
+
+	render() {
 		return (
 			<div>
 				Tasks:
-			<ul>
-					{singleTaskNames}
+				<ul>
+					{this.prepareList()}
 				</ul>
 			</div>
 		)
